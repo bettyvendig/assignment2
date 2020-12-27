@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html ng-app='LunchCheck'>
+<head>
+    <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+
+
+    <title>SHOPPING LIST</title>
+</head>
+<body>
+    <h1>SHOPPING LIST CHECK OFF SHEET</h1>
+    <!-- LIST #1 - unlimited items -->
+    <div class="container">
+        
+        
+                        
+                <span id="list1" ng-controller='ToBuyController as buylist'>
+                                
+                                <div class="container">
+                                    <h3>{{buylist.title}}</h3>
+                                    
+                                        <ul>
+                                            <li ng-repeat="item in buylist.items">
+                                            <span class="col-lg-2 col-md-2 col-sm-2"> </span> <span class="col-lg-6 col-md-6 col-sm-6">buy  {{item.quantity}}&nbsp;&nbsp;{{item.name}}s&nbsp;&nbsp;</span>
+                                                
+                                                
+                                                
+                                             <span class="col-lg-4 col-md-4 col-sm-4">   <button ng-click="buylist.moveItem($index);"><span class="reverse">bought</span></button></span>
+
+                                            </li>
+                                        </ul>
+                                    
+                                    <div ng-if="buylist.nothingleft">
+                                        <h1> nothing left to purchase </h1>
+                                    </div>
+
+
+
+
+
+                                </div>
+                                
+                                <div class="container">
+                                        <div class="col-lg-12, col-md-12, col-sm-12">
+                                        <!-- LIST #2 (limited to 3 items) -->
+                        
+                                            <div id="list2" ng-controller='BoughtController as boughtlist'>
+                                                <h3>{{boughtlist.title}}</h3>
+
+                                           <!--   <input type="text" ng-model="boughtlist.itemName" placeholder="item name">
+                                                <input type="text" ng-model="boughtlist.itemQuantity" placeholder="quantity">-->
+                                              <!-- <button ng-click="boughtlist.addItem();">Add Item</button>-->
+                                               <!--- <ol>
+                                                    <li ng-repeat="item in buylist.BoughtItems">
+                                                        {{ item.quantity }} of {{ item.name }}
+                                                        <button ng-click="boughtlist.moveItem($index);">Remove Item</button>
+                                                    </li>
+                                                </ol>-->
+                                               
+                                                <table>
+                                                    <thead><tr><td>Quantity</td><td>name</td></tr></thead>
+                                                    <tr ng-repeat="item in buylist.BoughtItems">
+                                                        <td> {{item.quantity}}</td>
+                                                        <td> {{item.name}}</td>
+
+                                                    </tr>
+                                                </table>
+                                                <div ng-if="buylist.nopurchase">
+                                                   <h1> nothing purchased yet </h1>
+                                                </div>
+
+                                            </div>
+
+                                         </div>  
+                                  
+                                </div>
+                            <!-- closes controller 1-->
+                </span><!--end of controller 1-->
+     </div>
+              
+</body>
+</html>
